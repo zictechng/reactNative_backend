@@ -63,7 +63,7 @@ function verifyToken(req, res, next) {
   }
 
 // route to register user and upload profile image
-router.post("/register", verifyToken, upload.single("file"), async (req, res, next) => {
+router.post("/register", upload.single("file"), async (req, res, next) => {
     const file = req.file;
 
     //const url = req.protocol + '://' + req.get('host') // this will get the host url directly
