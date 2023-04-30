@@ -719,7 +719,7 @@ router.post("/register_admin_users", verifyToken, upload.single("file"), async (
   // Admin route to update user details
 router.post("/update_user", upload.single("file"), async (req, res, next) => {
     const file = req.file;
-    console.log(file);
+    //console.log(file);
     //const url = req.protocol + '://' + req.get('host') // this will get the host url directly
 
     const filterUser = { _id: req.body._id };
@@ -738,7 +738,7 @@ router.post("/update_user", upload.single("file"), async (req, res, next) => {
         acct_type, country, address, acct_pin, acct_cot, acct_imf_code,
         acct_tax_code, acct_number, _id, acct_status, image_photo} = req.body
        
-    if(!username || !password || !surname || !first_name || !gender || !dob || !email || !address ){
+    if(!username || !surname || !first_name || !gender || !dob || !email || !address ){
         return res.status(400).json({msg: '400'}) // all fields are required
     }
       try {
@@ -873,11 +873,11 @@ router.post("/update_admin_users", verifyToken, async (req, res, next) => {
     try {
         const user = await User.findOne({ _id: req.body.user_id})
         if(!user){
-            console.log("User not found")
+           // console.log("User not found")
             return res.status(404).json({msg: '404'}) // all fields are required
         }
         else if(user){
-            console.log("User found");
+            //console.log("User found");
             const hashedPwd = await bcrypt.hash(req.body.password, 10) // salt rounds
 
             const updateDocBalance = {
