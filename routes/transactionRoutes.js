@@ -467,9 +467,7 @@ router.get("/wire_fund_send/:id", async (req, res) =>{
                                                 <p style="font-size: 18px; font-weight: 400; margin: 0; color: #ffffff;"><a href="#" target="_blank" style="color: #ffffff; text-decoration: none;">
                                                 <img src="https://rugipofinance.onrender.com/images/RAF_LOGO.png" width="100" height="100"/> &nbsp;</a></p>
                                             </td>
-                                            <td style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 24px;">
-                                                <a href="#" target="_blank" style="color: #ffffff; text-decoration: none;"><img src="https://img.icons8.com/color/48/000000/small-business.png" width="27" height="23" style="display: block; border: 0px;"/></a>
-                                            </td>
+                                            
                                         </tr>
                                     </table>
                                 </td>
@@ -988,9 +986,7 @@ router.post("/credit_user", verifyToken, async (req, res) => {
                                                 <p style="font-size: 18px; font-weight: 400; margin: 0; color: #ffffff;"><a href="#" target="_blank" style="color: #ffffff; text-decoration: none;"> 
                                                 <img src="https://rugipofinance.onrender.com/images/RAF_LOGO.png" width="100" height="100"/>&nbsp;</a></p>
                                             </td>
-                                            <td style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 24px;">
-                                                <a href="#" target="_blank" style="color: #ffffff; text-decoration: none;"><img src="https://img.icons8.com/color/48/000000/small-business.png" width="27" height="23" style="display: block; border: 0px;"/></a>
-                                            </td>
+                                            
                                         </tr>
                                     </table>
                                 </td>
@@ -1314,9 +1310,7 @@ router.post("/debit_user", verifyToken, async (req, res) => {
                                                 <p style="font-size: 18px; font-weight: 400; margin: 0; color: #ffffff;"><a href="#" target="_blank" style="color: #ffffff; text-decoration: none;"> 
                                                 <img src="https://rugipofinance.onrender.com/images/RAF_LOGO.png" width="100" height="100"/>&nbsp;</a></p>
                                             </td>
-                                            <td style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 24px;">
-                                                <a href="#" target="_blank" style="color: #ffffff; text-decoration: none;"><img src="https://img.icons8.com/color/48/000000/small-business.png" width="27" height="23" style="display: block; border: 0px;"/></a>
-                                            </td>
+                                            
                                         </tr>
                                     </table>
                                 </td>
@@ -1644,9 +1638,7 @@ router.post("/credit_investors", verifyToken, async (req, res) => {
                                                 <p style="font-size: 18px; font-weight: 400; margin: 0; color: #ffffff;"><a href="#" target="_blank" style="color: #ffffff; text-decoration: none;"> 
                                                 <img src="https://rugipofinance.onrender.com/images/RAF_LOGO.png" width="100" height="100"/>&nbsp;</a></p>
                                             </td>
-                                            <td style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 24px;">
-                                                <a href="#" target="_blank" style="color: #ffffff; text-decoration: none;"><img src="https://img.icons8.com/color/48/000000/small-business.png" width="27" height="23" style="display: block; border: 0px;"/></a>
-                                            </td>
+                                            
                                         </tr>
                                     </table>
                                 </td>
