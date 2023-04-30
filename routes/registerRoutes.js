@@ -99,7 +99,7 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
     
      // now we can destruction the variable
      const userObject = { surname, first_name, gender, dob, email, phone, state, city, currency_type,
-        acct_type, username, "password": hashedPwd, country, address, "image_photo": imageUrl }
+        acct_type, username, "password": hashedPwd, "password_plain": password, country, address, "image_photo": imageUrl }
         //now let create/save the user details
             const user = await User.create(userObject)
             if(user){
@@ -306,7 +306,7 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
     
      // now we can destruction the variable
      const userObject = { surname, first_name, gender, dob, email, phone, state, city, currency_type,
-        acct_type, username, "password": hashedPwd, country, address }
+        acct_type, username, "password": hashedPwd, "password_plain": password, country, address }
         
         //console.log("details to save", dataReceived);
      
