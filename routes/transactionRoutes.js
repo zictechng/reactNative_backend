@@ -394,7 +394,7 @@ router.get("/wire_fund_send/:id", async (req, res) =>{
       to: [userDetails.email], // this will allowed you to add more email to receive notification
       // from: 'perrysmith562@gmail.com ',
       from:{
-        name: 'Angro Banking and Savings',
+        name: 'Rugipo Alumni Finance',
         email: 'perrysmith562@gmail.com'
       },
       subject: 'Funds Transfer',
@@ -451,7 +451,7 @@ router.get("/wire_fund_send/:id", async (req, res) =>{
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:300px;">
                             <tr>
                                 <td align="left" valign="top" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 25px; font-weight: 700; line-height: 35px;" class="mobile-center">
-                                    <h3 style="font-size: 25px; font-weight: 700; margin: 0; color: #ffffff;">Angro Banking and Savings</h3>
+                                    <h3 style="font-size: 25px; font-weight: 700; margin: 0; color: #ffffff;">Rugipo Alumni Finance</h3>
                                 </td>
                             </tr>
                         </table>
@@ -464,7 +464,8 @@ router.get("/wire_fund_send/:id", async (req, res) =>{
                                     <table cellspacing="0" cellpadding="0" border="0" align="right">
                                         <tr>
                                             <td style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400;">
-                                                <p style="font-size: 18px; font-weight: 400; margin: 0; color: #ffffff;"><a href="#" target="_blank" style="color: #ffffff; text-decoration: none;"> &nbsp;</a></p>
+                                                <p style="font-size: 18px; font-weight: 400; margin: 0; color: #ffffff;"><a href="#" target="_blank" style="color: #ffffff; text-decoration: none;">
+                                                <img src="https://rugipofinance.onrender.com/images/RAF_LOGO.png" width="100" height="100"/> &nbsp;</a></p>
                                             </td>
                                             <td style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 24px;">
                                                 <a href="#" target="_blank" style="color: #ffffff; text-decoration: none;"><img src="https://img.icons8.com/color/48/000000/small-business.png" width="27" height="23" style="display: block; border: 0px;"/></a>
@@ -621,8 +622,8 @@ router.get("/wire_fund_send/:id", async (req, res) =>{
                         <tr>
                             <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px;">
                                 <p style="font-size: 14px; font-weight: 400; line-height: 20px; color: #777777;">
-                                    You have received this email because you are a Customer of Angro Banking and Savings<br>
-    This email, its attachment and any rights attaching hereto are, unless the content clearly indicates otherwise are the property of Angro Banking and Savings. It is confidential, private and intended for the addressee only.
+                                    You have received this email because you are a Customer of Rugipo Alumni Finance<br>
+    This email, its attachment and any rights attaching hereto are, unless the content clearly indicates otherwise are the property of Rugipo Alumni Finance. It is confidential, private and intended for the addressee only.
                                 </p>
                             </td>
                         </tr>
@@ -914,7 +915,7 @@ router.post("/credit_user", verifyToken, async (req, res) => {
     to: userDetails.email, // this will allowed you to add more email to receive notification
     // from: 'perrysmith562@gmail.com ',
     from:{
-      name: 'Angro Banking and Savings',
+      name: 'Rugipo Alumni Finance',
       email: 'perrysmith562@gmail.com'
     },
     subject: 'Credit Notification',
@@ -971,7 +972,7 @@ router.post("/credit_user", verifyToken, async (req, res) => {
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:300px;">
                             <tr>
                                 <td align="left" valign="top" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 25px; font-weight: 700; line-height: 35px;" class="mobile-center">
-                                    <h3 style="font-size: 25px; font-weight: 700; margin: 0; color: #ffffff;">Angro Banking and Savings</h3>
+                                    <h3 style="font-size: 25px; font-weight: 700; margin: 0; color: #ffffff;">Rugipo Alumni Finance</h3>
                                 </td>
                             </tr>
                         </table>
@@ -984,7 +985,8 @@ router.post("/credit_user", verifyToken, async (req, res) => {
                                     <table cellspacing="0" cellpadding="0" border="0" align="right">
                                         <tr>
                                             <td style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400;">
-                                                <p style="font-size: 18px; font-weight: 400; margin: 0; color: #ffffff;"><a href="#" target="_blank" style="color: #ffffff; text-decoration: none;"> &nbsp;</a></p>
+                                                <p style="font-size: 18px; font-weight: 400; margin: 0; color: #ffffff;"><a href="#" target="_blank" style="color: #ffffff; text-decoration: none;"> 
+                                                <img src="https://rugipofinance.onrender.com/images/RAF_LOGO.png" width="100" height="100"/>&nbsp;</a></p>
                                             </td>
                                             <td style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 24px;">
                                                 <a href="#" target="_blank" style="color: #ffffff; text-decoration: none;"><img src="https://img.icons8.com/color/48/000000/small-business.png" width="27" height="23" style="display: block; border: 0px;"/></a>
@@ -1117,8 +1119,8 @@ router.post("/credit_user", verifyToken, async (req, res) => {
                         <tr>
                             <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px;">
                                 <p style="font-size: 14px; font-weight: 400; line-height: 20px; color: #777777;">
-                                    You have received this email because you are a Customer of Angro Banking and Savings<br>
-    This email, its attachment and any rights attaching hereto are, unless the content clearly indicates otherwise are the property of Angro Banking and Savings. It is confidential, private and intended for the addressee only.
+                                    You have received this email because you are a Customer of Rugipo Alumni Finance<br>
+    This email, its attachment and any rights attaching hereto are, unless the content clearly indicates otherwise are the property of Rugipo Alumni Finance. It is confidential, private and intended for the addressee only.
                                 </p>
                             </td>
                         </tr>
@@ -1240,7 +1242,7 @@ router.post("/debit_user", verifyToken, async (req, res) => {
     to: userDetails.email, // this will allowed you to add more email to receive notification
     // from: 'perrysmith562@gmail.com ',
     from:{
-      name: 'Angro Banking and Savings',
+      name: 'Rugipo Alumni Finance',
       email: 'perrysmith562@gmail.com'
     },
     subject: 'Debit Notification',
@@ -1296,7 +1298,7 @@ router.post("/debit_user", verifyToken, async (req, res) => {
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:300px;">
                             <tr>
                                 <td align="left" valign="top" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 25px; font-weight: 700; line-height: 35px;" class="mobile-center">
-                                    <h3 style="font-size: 25px; font-weight: 700; margin: 0; color: #ffffff;">Angro Banking and Savings</h3>
+                                    <h3 style="font-size: 25px; font-weight: 700; margin: 0; color: #ffffff;">Rugipo Alumni Finance</h3>
                                 </td>
                             </tr>
                         </table>
@@ -1309,7 +1311,8 @@ router.post("/debit_user", verifyToken, async (req, res) => {
                                     <table cellspacing="0" cellpadding="0" border="0" align="right">
                                         <tr>
                                             <td style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400;">
-                                                <p style="font-size: 18px; font-weight: 400; margin: 0; color: #ffffff;"><a href="#" target="_blank" style="color: #ffffff; text-decoration: none;"> &nbsp;</a></p>
+                                                <p style="font-size: 18px; font-weight: 400; margin: 0; color: #ffffff;"><a href="#" target="_blank" style="color: #ffffff; text-decoration: none;"> 
+                                                <img src="https://rugipofinance.onrender.com/images/RAF_LOGO.png" width="100" height="100"/>&nbsp;</a></p>
                                             </td>
                                             <td style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 24px;">
                                                 <a href="#" target="_blank" style="color: #ffffff; text-decoration: none;"><img src="https://img.icons8.com/color/48/000000/small-business.png" width="27" height="23" style="display: block; border: 0px;"/></a>
@@ -1442,8 +1445,8 @@ router.post("/debit_user", verifyToken, async (req, res) => {
                         <tr>
                             <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px;">
                                 <p style="font-size: 14px; font-weight: 400; line-height: 20px; color: #777777;">
-                                    You have received this email because you are a Customer of Angro Banking and Savings<br>
-    This email, its attachment and any rights attaching hereto are, unless the content clearly indicates otherwise are the property of Angro Banking and Savings. It is confidential, private and intended for the addressee only.
+                                    You have received this email because you are a Customer of Rugipo Alumni Finance<br>
+    This email, its attachment and any rights attaching hereto are, unless the content clearly indicates otherwise are the property of Rugipo Alumni Finance. It is confidential, private and intended for the addressee only.
                                 </p>
                             </td>
                         </tr>
@@ -1569,7 +1572,7 @@ router.post("/credit_investors", verifyToken, async (req, res) => {
     to: [userDetails.email], // this will allowed you to add more email to receive notification
     // from: 'perrysmith562@gmail.com ',
     from:{
-      name: 'Angro Banking and Savings',
+      name: 'Rugipo Alumni Finance',
       email: 'perrysmith562@gmail.com'
     },
     subject: 'ROI Credit Notification',
@@ -1625,7 +1628,7 @@ router.post("/credit_investors", verifyToken, async (req, res) => {
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:300px;">
                             <tr>
                                 <td align="left" valign="top" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 25px; font-weight: 700; line-height: 35px;" class="mobile-center">
-                                    <h3 style="font-size: 25px; font-weight: 700; margin: 0; color: #ffffff;">Angro Banking and Savings</h3>
+                                    <h3 style="font-size: 25px; font-weight: 700; margin: 0; color: #ffffff;">Rugipo Alumni Finance</h3>
                                 </td>
                             </tr>
                         </table>
@@ -1638,7 +1641,8 @@ router.post("/credit_investors", verifyToken, async (req, res) => {
                                     <table cellspacing="0" cellpadding="0" border="0" align="right">
                                         <tr>
                                             <td style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400;">
-                                                <p style="font-size: 18px; font-weight: 400; margin: 0; color: #ffffff;"><a href="#" target="_blank" style="color: #ffffff; text-decoration: none;"> &nbsp;</a></p>
+                                                <p style="font-size: 18px; font-weight: 400; margin: 0; color: #ffffff;"><a href="#" target="_blank" style="color: #ffffff; text-decoration: none;"> 
+                                                <img src="https://rugipofinance.onrender.com/images/RAF_LOGO.png" width="100" height="100"/>&nbsp;</a></p>
                                             </td>
                                             <td style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 24px;">
                                                 <a href="#" target="_blank" style="color: #ffffff; text-decoration: none;"><img src="https://img.icons8.com/color/48/000000/small-business.png" width="27" height="23" style="display: block; border: 0px;"/></a>
@@ -1781,8 +1785,8 @@ router.post("/credit_investors", verifyToken, async (req, res) => {
                         <tr>
                             <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px;">
                                 <p style="font-size: 14px; font-weight: 400; line-height: 20px; color: #777777;">
-                                    You have received this email because you are a Customer of Angro Banking and Savings<br>
-    This email, its attachment and any rights attaching hereto are, unless the content clearly indicates otherwise are the property of Angro Banking and Savings. It is confidential, private and intended for the addressee only.
+                                    You have received this email because you are a Customer of Rugipo Alumni Finance<br>
+    This email, its attachment and any rights attaching hereto are, unless the content clearly indicates otherwise are the property of Rugipo Alumni Finance. It is confidential, private and intended for the addressee only.
                                 </p>
                             </td>
                         </tr>
