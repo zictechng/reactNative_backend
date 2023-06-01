@@ -70,6 +70,8 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
 
     const filter = { _id: req.body.first_name };
 
+    console.log("Data submitted ", req.body)
+    
     const dataReceived = { surname: req.body.surname, first_name: req.body.first_name,
     gender: req.body.gender, dob: req.body.dob, email: req.body.email, username: req.body.username,
     password: req.body.password, phone: req.body.phone, state: req.body.state, city: req.body.city,
@@ -81,7 +83,10 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
         dob, email, username, password, phone, state, city, currency_type,
         acct_type, country, address, image_photo} = req.body
        
-    if(!username || !password || !surname || !first_name || !gender || !dob || !email || !address ){
+    // if(!username || !password || !surname || !first_name || !gender || !dob || !email || !address ){
+    //     return res.status(400).json({msg: '400'}) // all fields are required
+    // }
+     if(!first_name || !password ){
         return res.status(400).json({msg: '400'}) // all fields are required
     }
       try {
@@ -118,7 +123,7 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
             log_status: 'Successful',
             log_nature:'New user registration',
            })
-      res.status(201).json({ msg: '201'}) // success message
+      res.send(201).json({ msg: '201'}) // success message
             
     // email notification sending
     const messageBody ={
