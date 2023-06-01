@@ -57,7 +57,7 @@ app.use("/api", userData)
 app.use("/api", loginUser)
 app.use("/api", transactionData)
 app.use("/api", adminUpdateData)
-app.use('/notes', require('./routes/noteRoutes'))
+//app.use('/notes', require('./routes/noteRoutes'))
 
 // this will handle any request/routes that is not found in the server
 // and then send 404 error page to the users
