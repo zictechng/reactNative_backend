@@ -70,7 +70,7 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
 
     const filter = { _id: req.body.first_name };
 
-    console.log("Data submitted ", req.body)
+    //console.log("Data submitted ", req.body)
     
     const dataReceived = { surname: req.body.surname, first_name: req.body.first_name,
     gender: req.body.gender, dob: req.body.dob, email: req.body.email, username: req.body.username,
@@ -87,13 +87,15 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
     //     return res.status(400).json({msg: '400'}) // all fields are required
     // }
      if(!first_name || !password ){
-        return res.status(400).json({msg: '400'}) // all fields are required
+        return res.json({status: 404, message: ' All fields are required'})
+        //return res.status(400).json({msg: '400'}) // all fields are required
     }
       try {
     // Check if user already exist
     const userExist = await User.findOne({username}).lean().exec()
     if(userExist){
-        return res.status(409).json({msg: '409'}) // user already exist
+        return res.json({status: 409, message: ' User already exist'})
+        //return res.status(409).json({msg: '409'}) // user already exist
     }
 
     // if user upload image file run this code
@@ -300,7 +302,7 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
       .catch((err) => console.log(err.message));
             
               } else{
-            res.status(401).json({ msg: '401'})  // invalid user details
+            res.send(401).json({ msg: '401'})  // invalid user details
             }
     }
     // if user did upload image file, run this
@@ -509,11 +511,11 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
       .catch((err) => console.log(err.message));
             
               } else{
-            res.status(401).json({ msg: '401'})  // invalid user details
+            res.send(401).json({ msg: '401'})  // invalid user details
             }
         }
        } catch (err) {
-          res.status(500).send({ msg: "500" });
+          res.send(500).send({ msg: "500" });
         }
   });
   
@@ -541,13 +543,15 @@ router.post("/add-user", verifyToken, upload.single("file"), async (req, res, ne
         acct_tax_code, acct_number, image_photo} = req.body
        
     if(!username || !password || !surname || !first_name || !gender || !dob || !email || !address ){
-        return res.status(400).json({msg: '400'}) // all fields are required
+        return res.json({status: 400, message: ' All fields are required'})
+        //return res.status(400).json({msg: '400'}) // all fields are required
     }
       try {
     // Check if user already exist
     const userExist = await User.findOne({username}).lean().exec()
     if(userExist){
-        return res.status(409).json({msg: '409'}) // user already exist
+        return res.json({status: 409, message: ' User already exist'})
+        //return res.status(409).json({msg: '409'}) // user already exist
     }
 
     // if user upload image file run this code
@@ -640,13 +644,15 @@ router.post("/register_admin_users", verifyToken, upload.single("file"), async (
         email, username, password, phone, image_photo} = req.body
        
     if(!username || !password || !surname || !first_name ){
-        return res.status(400).json({msg: '400'}) // all fields are required
+        return res.json({status: 400, message: ' ALl fields are required'})
+        //return res.status(400).json({msg: '400'}) // all fields are required
     }
       try {
     // Check if user already exist
     const userExist = await User.findOne({username}).lean().exec()
     if(userExist){
-        return res.status(409).json({msg: '409'}) // user already exist
+        return res.json({status: 409, message: ' User already exist'})
+        //return res.status(409).json({msg: '409'}) // user already exist
     }
 
     // if user upload image file run this code
@@ -744,7 +750,8 @@ router.post("/update_user", upload.single("file"), async (req, res, next) => {
         acct_tax_code, acct_number, _id, acct_status, image_photo} = req.body
        
     if(!username || !surname || !first_name || !gender || !dob || !email || !address ){
-        return res.status(400).json({msg: '400'}) // all fields are required
+       return res.json({status: 400, message: ' All fields are required'})
+        //return res.status(400).json({msg: '400'}) // all fields are required
     }
       try {
 
@@ -879,7 +886,8 @@ router.post("/update_admin_users", verifyToken, async (req, res, next) => {
         const user = await User.findOne({ _id: req.body.user_id})
         if(!user){
            // console.log("User not found")
-            return res.status(404).json({msg: '404'}) // all fields are required
+            return res.json({status: 404, message: ' All fields are required'})
+            //return res.status(404).json({msg: '404'}) // all fields are required
         }
         else if(user){
             //console.log("User found");
@@ -937,7 +945,8 @@ router.post("/user_update_password", verifyToken, async (req, res, next) => {
     try {
         const user = await User.findOne({ _id: req.body.user_id})
         if(!user){
-            return res.status(404).json({msg: '404'}) // user not found required
+            return res.json({status: 404, message: ' User not found'})
+            //return res.status(404).json({msg: '404'}) // user not found required
         }
         else if(user){
             //console.log("User found");
@@ -989,17 +998,20 @@ router.post("/verify_reset_password", async (req, res, next) => {
     // console.log("Data Integer", b);
 
     if(req.body.forget_details == '' || req.body.forget_details == null) {
-        return res.status(400).json({msg: '400'}) // some fields are required
+        return res.json({status: 400, message: ' Some fields are required'})
+        //return res.status(400).json({msg: '400'}) // some fields are required
     }
     try {
         const user = await User.findOne({$or: [{email: req.body.forget_details},
                      {username: req.body.forget_details}]})
          if (!user){
-            console.log('Email user not found ');
-            return res.status(404).json({msg: '404'})
+            //console.log('Email user not found ');
+            return res.json({status: 404, message: ' User not found'})
+            //return res.status(404).json({msg: '404'})
           } 
          else if (user.acct_status != 'Active'){
-            return res.status(401).json({msg: '401'})
+            return res.json({status: 401, message: ' Account not active'})
+           // return res.status(401).json({msg: '401'})
          }
          else if (user && user.acct_status == 'Active'){
         res.status(200).json({msg: '200', user})

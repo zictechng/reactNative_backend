@@ -39,11 +39,12 @@ router.post("/login", async (req, res, next) => {
     const file = req.file;
     const filter = req.body ;
 
-    console.log("Login Data ", req.body);
+            //console.log("Login Data ", req.body);
 
             //check in input fields is empty
             if(filter.username == '' || filter.password == ''){
-                return res.status(400).json({msg: '400'}) //Fields required
+                return res.json({status: 400, message: ' All fields are required'})
+                //return res.status(400).json({msg: '400'}) //Fields required
             } 
             
             try {
@@ -51,16 +52,21 @@ router.post("/login", async (req, res, next) => {
             const userExist = await User.findOne({username: filter.username})
             
             if(!userExist){
-                return res.status(401).json({msg: '401'}) //No user found
+                //console.log('Wrong username entered!');
+                 return res.json({status: 401, message: ' User not found'})
+                 
+                //return res.status(401).json({msg: '401'}) //No user found
             }
             // compare the password against what was passed from the request body
             bcrypt.compare(req.body.password, userExist.password, function(err, matches) {
                 if (err){
-                return res.status(403).json({msg: '403'}); // error occurred
+                return res.json({status: 403, message: ' Error occured'})
+                //return res.status(403).json({msg: '403'}); // error occurred
                 }
                   
                 if (!matches){
-                    res.status(404).json({msg: '404'}); // wrong password entered
+                   return res.json({status: 404, message: ' Wrong password entered'})
+                    //res.status(404).json({msg: '404'}); // wrong password entered
                     //console.log('The password does NOT match!');
                 }
                 else {
@@ -276,6 +282,7 @@ router.post("/login", async (req, res, next) => {
                 .catch((err) => console.log(err.message));
 
             res.send({ msg: '200', token: token, userData: others})
+            //res.json({status: 201, message: ' Login Successful'})
             //console.log('Environment data!', process.env.SECRET_KEY);
         }
     });
