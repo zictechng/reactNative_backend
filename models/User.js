@@ -57,6 +57,9 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: 0.0,
     },
+    reg_otp:{
+        type: String,
+    },
     user_role:{
         type: String, default: 'User'
     },

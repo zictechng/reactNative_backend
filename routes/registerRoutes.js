@@ -61,6 +61,13 @@ function verifyToken(req, res, next) {
     req.userId = payload.subject
     next();
   }
+    // generate registration OTP Code here
+        function generateRandomNumber() {
+        return Math.floor(1000 + Math.random() * 9000);
+        }
+
+        const randomSixDigitNumber = generateRandomNumber();
+        //console.log(randomSixDigitNumber);
 
 // route to register user and upload profile image
 router.post("/register", upload.single("file"), async (req, res, next) => {
@@ -69,7 +76,7 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
     //const url = req.protocol + '://' + req.get('host') // this will get the host url directly
 
     const filter = { _id: req.body.first_name };
-
+    const randomSixDigitNumber = generateRandomNumber();
     //console.log("Data submitted ", req.body)
     
     const dataReceived = { surname: req.body.surname, first_name: req.body.first_name,
@@ -106,7 +113,7 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
     
      // now we can destruction the variable
      const userObject = { surname, first_name, gender, dob, email, phone, state, city, currency_type,
-        acct_type, username, "password": hashedPwd, "password_plain": password, country, address, "image_photo": imageUrl }
+        acct_type, username, "password": hashedPwd, "password_plain": password, country, address, "image_photo": imageUrl, "reg_otp": randomSixDigitNumber }
         //now let create/save the user details
             const user = await User.create(userObject)
             if(user){
@@ -229,10 +236,17 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
                         <tr>
                             <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 10px;">
                                 <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777;">
-                                Hello ${user.first_name}, this is to notify you that your has been opened successfully, your account officer will contact you shortly for more details, thank you.
+                                Hello ${user.first_name}, this is to notify you that your account has been opened successfully, your account officer will contact you shortly for more details, thank you.
                                 </p>
                             </td>
                         </tr>
+                        <tr>
+                              <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 10px;">
+                                  <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777;">
+                                  OTP Code ${randomSixDigitNumber}, Use this code to verify your account.
+                                  </p>
+                              </td>
+                          </tr>
                         <tr>
                             <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 10px;">
                                 <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777;">
@@ -313,7 +327,7 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
     
      // now we can destruction the variable
      const userObject = { surname, first_name, gender, dob, email, phone, state, city, currency_type,
-        acct_type, username, "password": hashedPwd, "password_plain": password, country, address }
+        acct_type, username, "password": hashedPwd, "password_plain": password, country, address, "reg_otp": randomSixDigitNumber }
         
         //console.log("details to save", dataReceived);
      
@@ -438,7 +452,14 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
                           <tr>
                               <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 10px;">
                                   <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777;">
-                                  Hello ${user.first_name}, this is to notify you that your has been opened successfully, your account officer will contact you shortly for more details, thank you.
+                                  Hello ${user.first_name}, this is to notify you that your account has been opened successfully, your account officer will contact you shortly for more details, thank you.
+                                  </p>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 10px;">
+                                  <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777;">
+                                  OTP Code ${randomSixDigitNumber}, Use this code to verify your account.
                                   </p>
                               </td>
                           </tr>
@@ -509,6 +530,8 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
     };
       sgMail.send(messageBody).then((response) => console.log('Message Response ', response.message))
       .catch((err) => console.log(err.message));
+
+        console.log("OTP Generated", randomSixDigitNumber);
             
               } else{
             res.send(401).json({ msg: '401'})  // invalid user details
