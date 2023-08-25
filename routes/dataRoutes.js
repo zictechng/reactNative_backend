@@ -108,10 +108,56 @@ router.get("/profile/:id", async (req, res) => {
   // get recent transaction of the user financial details here..
   router.get("/recent_transactions/:id", async (req, res) => {
     let userId = req.params.id;
+    console.log("Recent record ", userId);
     try {
       const recentTransaction = await TransferFund.find({createdBy: userId})
-      .sort({ creditOn: -1 }).limit(5);
-      res.status(200).send(recentTransaction);
+      .sort({ creditOn: -1 }).limit(3);
+      res.send(recentTransaction)
+      //res.json({status: 201, message: ' Login Successful'})
+      console.log("Data fetch", recentTransaction)
+    } catch (err) {
+      res.status(500).json(err.message);
+      console.log(err.message);
+    }
+  });
+
+  // get recent transaction of the user financial details here..
+  router.get("/all_transaction/:id", async (req, res) => {
+
+  const page = 1;
+  const userId = req.params.id;
+  const limit = 5;
+  const totalItems = 0;
+  const skip = (page - 1) * limit;
+
+  // try {
+  //   const allInvestors = await Investment.find().sort({ createdOn: -1 })
+  //   .skip(skip).limit(limit);
+
+    //let userId = req.params.id;
+    try {
+      const recentTransaction = await TransferFund.find({createdBy: userId})
+      .sort({ creditOn: -1 });
+      res.send(recentTransaction)
+      // res.send({ msg: '200', data: recentTransaction})
+      //res.json({status: 201, message: ' Login Successful'})
+      //res.status(200).send(recentTransaction);
+    } catch (err) {
+      res.status(500).json(err.message);
+      console.log(err.message);
+    }
+  });
+
+  // get recent transaction of the user financial details here..
+  router.get("/all_transactions", async (req, res) => {
+    let userId = req.params.id;
+    try {
+      const recentTransaction = await TransferFund.find()
+      .sort({ creditOn: -1 }).limit(10);
+      res.send(recentTransaction)
+      // res.send({ msg: '200', data: recentTransaction})
+      //res.json({status: 201, message: ' Login Successful'})
+      //res.status(200).send(recentTransaction);
     } catch (err) {
       res.status(500).json(err.message);
       console.log(err.message);

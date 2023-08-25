@@ -347,61 +347,61 @@ router.get("/user_logout/:id", async (req, res, next) => {
     }); 
     
     // verify user login state if it is valid or not
-router.get("/verify_login", verifyToken, async (req, res) => {
-    let myToken = req.query.token;
-    let myId = req.query.user_id;
+// router.get("/verify_login", verifyToken, async (req, res) => {
+//     let myToken = req.query.token;
+//     let myId = req.query.user_id;
        
-    // console.log("User ID ", myId);
-    // console.log("User token ", myToken);
+//     // console.log("User ID ", myId);
+//     // console.log("User token ", myToken);
 
-        try {
-            const userData = await User.find({_id: myId });
-            const userLogs = await UserLogs.findOne({login_token: myToken });
-            //console.log("User log Details ", userLogs)
-        if(userLogs === null){
-            const addLogs = SystemActivity.create({
-                        log_username: '',
-                        log_name: '',
-                        log_acct_number: '',
-                        log_receiver_name: '',
-                        log_receiver_number: '',
-                        log_receiver_bank: '',
-                        log_country: '',
-                        log_swift_code: '',
-                        log_desc:'User try to bye-past login',
-                        log_amt: '',
-                        log_status: 'Failed',
-                        log_nature:'Login failed',
-                    });
-        res.status(404).json({ msg: '404' })
-        console.log("Result Details", userLogs);
-        }
-         else if(!userData || userData === undefined || userData === null) {
-                const addLogs = SystemActivity.create({
-                log_username: '',
-                log_name: '',
-                log_acct_number: '',
-                log_receiver_name: '',
-                log_receiver_number: '',
-                log_receiver_bank: '',
-                log_country: '',
-                log_swift_code: '',
-                log_desc:'User try to bye-past login',
-                log_amt: '',
-                log_status: 'Failed',
-                log_nature:'Login failed',
-            });
-            res.status(404).json({ msg: '404' })
-            }
-            else if(userLogs){
-            //console.log("Result Details", result);
-            res.status(200).send({data: userData, msg: '200'});
-            }
-        } catch (err) {
-            res.status(500).json(err);
-            console.log("Error 500 ", err.message);
-        }
-    });
+//         try {
+//             const userData = await User.find({_id: myId });
+//             const userLogs = await UserLogs.findOne({login_token: myToken });
+//             //console.log("User log Details ", userLogs)
+//         if(userLogs === null){
+//             const addLogs = SystemActivity.create({
+//                         log_username: '',
+//                         log_name: '',
+//                         log_acct_number: '',
+//                         log_receiver_name: '',
+//                         log_receiver_number: '',
+//                         log_receiver_bank: '',
+//                         log_country: '',
+//                         log_swift_code: '',
+//                         log_desc:'User try to bye-past login',
+//                         log_amt: '',
+//                         log_status: 'Failed',
+//                         log_nature:'Login failed',
+//                     });
+//         res.status(404).json({ msg: '404' })
+//         console.log("Result Details", userLogs);
+//         }
+//          else if(!userData || userData === undefined || userData === null) {
+//                 const addLogs = SystemActivity.create({
+//                 log_username: '',
+//                 log_name: '',
+//                 log_acct_number: '',
+//                 log_receiver_name: '',
+//                 log_receiver_number: '',
+//                 log_receiver_bank: '',
+//                 log_country: '',
+//                 log_swift_code: '',
+//                 log_desc:'User try to bye-past login',
+//                 log_amt: '',
+//                 log_status: 'Failed',
+//                 log_nature:'Login failed',
+//             });
+//             res.status(404).json({ msg: '404' })
+//             }
+//             else if(userLogs){
+//             //console.log("Result Details", result);
+//             res.status(200).send({data: userData, msg: '200'});
+//             }
+//         } catch (err) {
+//             res.status(500).json(err);
+//             console.log("Error 500 ", err.message);
+//         }
+//     });
 
     // route to verify user account (OTP)
 router.post("/otp_verify", async (req, res, next) => {
@@ -409,7 +409,7 @@ router.post("/otp_verify", async (req, res, next) => {
     const filter = req.body ;
     const filterUser = { email: req.body.user_email };
 
-    console.log("OTP Data from APP", req.body);
+    //console.log("OTP Data from APP", req.body);
 
        //check in input fields is empty
             if(filter.otp_code == '' || filter.user_email == ''){
