@@ -114,7 +114,7 @@ router.get("/profile/:id", async (req, res) => {
       .sort({ creditOn: -1 }).limit(3);
       res.send(recentTransaction)
       //res.json({status: 201, message: ' Login Successful'})
-      console.log("Data fetch", recentTransaction)
+      //console.log("Data fetch", recentTransaction)
     } catch (err) {
       res.status(500).json(err.message);
       console.log(err.message);
@@ -122,31 +122,45 @@ router.get("/profile/:id", async (req, res) => {
   });
 
   // get recent transaction of the user financial details here..
-  router.get("/all_transaction/:id", async (req, res) => {
+  // router.get("/all_transaction/:id", async (req, res) => {
 
-  const page = 1;
-  const userId = req.params.id;
-  const limit = 5;
-  const totalItems = 0;
-  const skip = (page - 1) * limit;
+  // const page = 1;
+  // const userId = req.params.id;
+  // const limit = 5;
+  // const totalItems = 0;
+  // const skip = (page - 1) * limit;
+  //   try {
+  //     const recentTransaction = await TransferFund.find({createdBy: userId})
+  //     .sort({ creditOn: -1 });
+  //     res.send(recentTransaction)
+  //    } catch (err) {
+  //     res.status(500).json(err.message);
+  //     console.log(err.message);
+  //   }
+  // });
 
-  // try {
-  //   const allInvestors = await Investment.find().sort({ createdOn: -1 })
-  //   .skip(skip).limit(limit);
-
-    //let userId = req.params.id;
+  router.get("/all_statement/:id", async (req, res) => {
+    const userId = req.params.id;
+    const itemsPerPage = 3; // Number of transactions per page
+    const page = parseInt(req.query.page) || 1; // Get page number from query or default to 1
+    const skip = (page - 1) * itemsPerPage;
+    
+    console.log("Details got from frontend", req.params.id + ' / ' + page );
     try {
-      const recentTransaction = await TransferFund.find({createdBy: userId})
-      .sort({ creditOn: -1 });
-      res.send(recentTransaction)
-      // res.send({ msg: '200', data: recentTransaction})
-      //res.json({status: 201, message: ' Login Successful'})
-      //res.status(200).send(recentTransaction);
+    const recentTransaction = await TransferFund.find({createdBy: userId }) // Use the user ID in the query
+    .sort({ creditOn: -1 })
+    .skip(skip)
+    .limit(itemsPerPage);
+    
+    console.log(recentTransaction)
+    res.send(recentTransaction);
     } catch (err) {
-      res.status(500).json(err.message);
-      console.log(err.message);
+    res.status(500).json({ error: err.message });
     }
-  });
+    });
+
+
+
 
   // get recent transaction of the user financial details here..
   router.get("/all_transactions", async (req, res) => {
