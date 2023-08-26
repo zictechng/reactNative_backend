@@ -141,17 +141,22 @@ router.get("/profile/:id", async (req, res) => {
 
   router.get("/all_statement/:id", async (req, res) => {
     const userId = req.params.id;
-    const itemsPerPage = 3; // Number of transactions per page
+    const itemsPerPage = 5; // Number of transactions per page
     const page = parseInt(req.query.page) || 1; // Get page number from query or default to 1
     const skip = (page - 1) * itemsPerPage;
     
     console.log("Details got from frontend", req.params.id + ' / ' + page );
     try {
+    const countAll = await TransferFund.find({createdBy: userId }).count();
     const recentTransaction = await TransferFund.find({createdBy: userId }) // Use the user ID in the query
     .sort({ creditOn: -1 })
     .skip(skip)
     .limit(itemsPerPage);
     
+    console.log(" Total Records is: ", countAll);
+    if(!recentTransaction || recentTransaction < 1){
+      return res.json({status: 404, message: 'No more records'})
+    }
     console.log(recentTransaction)
     res.send(recentTransaction);
     } catch (err) {
