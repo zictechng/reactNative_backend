@@ -154,6 +154,7 @@ router.get("/profile/:id", async (req, res) => {
     .limit(itemsPerPage);
     
     console.log(" Total Records is: ", countAll);
+    
     if(!recentTransaction || recentTransaction < 1){
       return res.json({status: 404, message: 'No more records'})
     }
