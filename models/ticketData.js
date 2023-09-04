@@ -9,6 +9,9 @@ const ticketSchema = new mongoose.Schema({
         type: String,
         default: 'Pending',
         },
+    ticket_type: {
+        type: String,
+        },
     active: {
         type: Boolean,
         default: true
@@ -22,6 +25,7 @@ const ticketSchema = new mongoose.Schema({
     },
     
     tick_id: String,
+    tick_date: String,
     createdOn: {type: Date, default: Date.now},
  })
 
