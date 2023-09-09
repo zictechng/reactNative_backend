@@ -88,6 +88,19 @@ router.get("/profile/:id", async (req, res) => {
       console.log(err.message);
     }
   });
+// get login use details via Mobile 
+router.get("/profileMobile/:id", async (req, res) => {
+    let userId = req.params.id;
+    try {
+      const userDetails = await User.findOne({ _id: userId });
+     const { password, ...others } = userDetails._doc; // this will remove password from the details send to server.
+  
+     res.send({ msg: '200', userData: others})
+    } catch (err) {
+      res.status(500).json(err.message);
+      console.log(err.message);
+    }
+  });
   
   // get current user financial details here..
   router.get("/income_details/:id", async (req, res) => {
@@ -111,7 +124,7 @@ router.get("/profile/:id", async (req, res) => {
     console.log("Recent record ", userId);
     try {
       const recentTransaction = await TransferFund.find({createdBy: userId})
-      .sort({ creditOn: -1 }).limit(3);
+      .sort({ creditOn: -1 }).limit(6);
       res.send(recentTransaction)
       //res.json({status: 201, message: ' Login Successful'})
       //console.log("Data fetch", recentTransaction)
@@ -186,9 +199,9 @@ router.get("/profile/:id", async (req, res) => {
   // get recent transaction of the user financial details here..
   
   
-  router.get("/all_statement/:id", async (req, res) => {
+  router.get("/all_statementMobile/:id", async (req, res) => {
     const userId = req.params.id;
-    const itemsPerPage = 5; // Number of transactions per page
+    const itemsPerPage = 10; // Number of transactions per page
     const page = parseInt(req.query.page) || 1; // Get page number from query or default to 1
     const skip = (page - 1) * itemsPerPage;
       const countAll = await TransferFund.find({createdBy: userId }).count();
@@ -217,8 +230,7 @@ router.get("/profile/:id", async (req, res) => {
     }
     });
 
-
-    router.get("/all_history/:id", async (req, res) => {
+    router.get("/all_historyMobile/:id", async (req, res) => {
       const userId = req.params.id;
       const itemsPerPage = 10; // Number of transactions per page
       const page = parseInt(req.query.page) || 1; // Get page number from query or default to 1
@@ -248,8 +260,7 @@ router.get("/profile/:id", async (req, res) => {
       res.status(500).json({ error: err.message });
       }
       });
-    
-  
+
   router.get("/all_transactions", async (req, res) => {
     let userId = req.params.id;
     try {
@@ -1161,12 +1172,34 @@ router.post("/reset_AccountPINMobile", async (req, res) => {
 
 });
 
+// Block user account status from mobile app here..
+router.post("/fetch_AccountDetailsMobile", async (req, res) => {
+  //console.log("Backend Data receive ", req.body)
+  const filter = { _id: req.body.uid };
 
+   try {
+     let checkUser = await User.findOne({ acct_number:  req.body.data }); // here I am checking if user exist then I will get user details
+     if (!checkUser) {
+       //console.log("User details: ", userDetails)
+      return res.json({status: 404, message: ' No user found'})
+     } 
+     else if (checkUser){
+      // set deactivation status here ...
+      
+      const { password, ...others } = checkUser._doc;
+      res.send({ msg: '200', userData: others})
+         
+    }
+ } catch (err) {
+ res.status(500).send({ msg: "500" });
+}
+
+});
 
 
 // submit ticket details from mobile app here..
 router.post("/submit_ticketMobile", async (req, res) => {
-  console.log("Backend Data receive ", req.body)
+  //console.log("Backend Data receive ", req.body)
 
    try {
      let checkUser = await User.findOne({ _id:  req.body.createdBy }); // here I am checking if user exist then I will get user details
@@ -1469,8 +1502,84 @@ router.get("/user_finance_chart/:id", async (req, res) => {
   }
 });
 
- // get user notification here here..
- router.get("/user_notification/:id", async (req, res) => {
+ // get user notification from Mobile here here..
+ router.get("/user_notificationMobile/:id", async (req, res) => {
+  let myId = req.params.id;
+  //console.log('My ID ', req.params.id)
+  const itemsPerPage = 10; // Number of transactions per page
+  const page = parseInt(req.query.page) || 1; // Get page number from query or default to 1
+  const skip = (page - 1) * itemsPerPage;
+  const countAll = await Notification.find({alert_user_id: myId }).count();
+  const filter = {alert_user_id: myId, alert_status: 1}
+    
+    const pageTotal = (Math.ceil(countAll / itemsPerPage));
+        if (countAll == 0 || countAll < 1){
+          
+          return res.json({status: 401, message: 'No record found'})
+        }
+  
+  //console.log("today Month", month);
+  try {
+    const notifyDetailsRead = await Notification.find({alert_user_id: myId, alert_status: 1 })
+    if(notifyDetailsRead){
+      const updateDoc = {
+        $set: {
+          alert_status: 0,
+          },
+      }
+      const updateRead = await Notification.updateMany(filter, updateDoc);
+    }
+    const notifyDetails = await Notification.find({alert_user_id: myId })
+    .sort({ createdOn: -1 })
+    .skip(skip)
+    .limit(itemsPerPage);
+    
+    //console.log(" Total Records is: ", countAll);
+    if(!notifyDetails || notifyDetails < 1){
+      return res.json({status: 404, message: 'No more records'})
+    }
+    else if(notifyDetails){
+    //console.log("Notification Details ", notifyDetails)
+    //res.status(200).send(notifyDetails);
+    res.send(notifyDetails)
+    }
+    
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err.message);
+  }
+});
+
+// count user notification Message Mobile here here..
+router.get("/user_messageCount/:id", async (req, res) => {
+  let myId = req.params.id;
+  console.log("Request", req.params.id);
+  try {
+    const messageDetailsCount = await Notification.find({alert_user_id: myId, alert_status: 1 })
+    .count();
+    if(!messageDetailsCount){
+      //return res.status(404).send({msg: '404'});
+      return res.json({status: 404, msg: 'No message found'})
+    }
+    else if(messageDetailsCount){
+      console.log("Total Notification Details ", messageDetailsCount)
+      //res.send(messageDetailsCount)
+      //res.sendStatus(200).send(messageDetailsCount);
+      res.send({ msg: '200', userMessage: messageDetailsCount})
+    }
+    else{
+      console.log("No message ")
+      
+    }
+    
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err.message);
+  }
+});
+
+// get user notification here here..
+router.get("/user_notification/:id", async (req, res) => {
   let myId = req.params.id;
   var today = new Date();
   var month = today.toLocaleString('default', { month: 'long' });
@@ -1492,7 +1601,6 @@ router.get("/user_finance_chart/:id", async (req, res) => {
     console.log(err.message);
   }
 });
-
 // mark user notification read here..
  router.get("/user_notification_read/:id", async (req, res) => {
   let myId = req.params.id;
