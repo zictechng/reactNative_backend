@@ -3,7 +3,7 @@ const allowedOrigins = [
     'http://localhost:3000',
     'http://www.zictech-ng.com',
     'http://localhost:4200',
-    'http://www.zictech-ng.com',
+    'https://www.zictech-ng.com',
     'http://localhost',
     'http://localhost:3500',
 
