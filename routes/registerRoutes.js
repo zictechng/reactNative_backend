@@ -144,7 +144,8 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
         email: 'perrysmith562@gmail.com'
       },
       subject: 'Account Opening Successfully',
-      text: `Hello ${user.first_name}, this is to notify you that your has been opened successfully, your account officer will contact you shortly for more details, thank you.`,
+      text: `Hello ${user.first_name}, this is to notify you that your has been opened successfully, your account officer will contact you shortly for further details, thank you. \n
+      OTP Code ${randomSixDigitNumber}, Use this code to verify your account before you can be able to login.`,
       html: `<!DOCTYPE html>
     <html>
     <head>
@@ -243,7 +244,7 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
                         <tr>
                               <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 10px;">
                                   <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777;">
-                                  OTP Code ${randomSixDigitNumber}, Use this code to verify your account.
+                                  OTP Code ${randomSixDigitNumber}, Use this code to verify your account before you can be able to login.
                                   </p>
                               </td>
                           </tr>
@@ -316,7 +317,8 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
       .catch((err) => console.log(err.message));
             
               } else{
-            res.send(401).json({ msg: '401'})  // invalid user details
+            //res.send(401).json({ msg: '401'}) 
+            res.json({status: 401, msg: '401'}) // invalid user details
             }
     }
     // if user did upload image file, run this
@@ -349,7 +351,7 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
             log_status: 'Successful',
             log_nature:'New user added',
            })
-                res.status(201).json({ msg: '201'}) // success message
+        res.status(201).json({ msg: '201'}) // success message
             // email notification sending
         const messageBody ={
       // to: checkUser.email,
@@ -360,7 +362,8 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
         email: 'perrysmith562@gmail.com'
         },
       subject: 'Account Opening Successfully',
-      text: `Hello ${user.first_name}, this is to notify you that your has been opened successfully, your account officer will contact you shortly for more details, thank you.`,
+      text: `Hello ${user.first_name}, this is to notify you that your account has been opened successfully, your account officer will contact you shortly for further details, thank you. \n 
+      OTP Code ${randomSixDigitNumber}, Use this code to verify your account before you can be able to login.`,
       html: `<!DOCTYPE html>
       <html>
       <head>
@@ -452,14 +455,14 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
                           <tr>
                               <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 10px;">
                                   <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777;">
-                                  Hello ${user.first_name}, this is to notify you that your account has been opened successfully, your account officer will contact you shortly for more details, thank you.
+                                  Hello ${user.first_name}, this is to notify you that your account has been opened successfully, your account officer will contact you shortly for further details, thank you.
                                   </p>
                               </td>
                           </tr>
                           <tr>
                               <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 10px;">
                                   <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777;">
-                                  OTP Code ${randomSixDigitNumber}, Use this code to verify your account.
+                                  OTP Code ${randomSixDigitNumber}, Use this code to verify your account before you can be able to login.
                                   </p>
                               </td>
                           </tr>
@@ -531,14 +534,16 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
       sgMail.send(messageBody).then((response) => console.log('Message Response ', response.message))
       .catch((err) => console.log(err.message));
 
-        console.log("OTP Generated", randomSixDigitNumber);
+        //console.log("OTP Generated", randomSixDigitNumber);
             
               } else{
-            res.send(401).json({ msg: '401'})  // invalid user details
+            //res.send(401).json({ msg: '401'}) 
+            res.json({status: 401, msg: '401'}) // invalid user details
             }
         }
        } catch (err) {
-          res.send(500).send({ msg: "500" });
+          //res.send(500).send({ msg: "500" });
+          res.json({status: 500, msg: '500'})
         }
   });
   

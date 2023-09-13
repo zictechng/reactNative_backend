@@ -31,8 +31,6 @@ console.log(process.env.NODE_ENV)
 
 connectDB() // calling the database function
 
-//RugipoEmailAPI:  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
-
 // call the logger function for use here
 app.use(logger)
 
