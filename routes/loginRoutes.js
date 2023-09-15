@@ -394,9 +394,9 @@ router.post("/login", async (req, res, next) => {
                                     <tr>
                                         <td align="center" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 25px;">
                                         <img src="https://img.icons8.com/ios/50/null/appointment-reminders--v2.png" style="display: block; border: 0px;" /><br>
-                                            <h2 style="font-size: 20px; font-weight: 600; line-height: 25px; color: #333333; margin: 0;">
+                                            <h4 style="font-size: 20px; font-weight: 600; line-height: 25px; color: #333333; margin: 0;">
                                                 Account Login Notification
-                                            </h2>
+                                            </h4>
                                         </td>
                                     </tr>
                                     <tr>
