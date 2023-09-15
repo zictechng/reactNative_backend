@@ -470,7 +470,7 @@ router.post("/login", async (req, res, next) => {
                     </html>`,
                     });
                   
-                    console.log("Message sent: %s", info.messageId);
+                    //console.log("Message sent: %s", info.messageId);
                     }
                     main().catch('Message Error', console.error);
                 
