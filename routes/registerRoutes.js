@@ -325,7 +325,6 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
             </html>`,
             });
           
-            //console.log("Message sent: %s", info.messageId);
             }
             main().catch('Email Message Error', console.error);
 
@@ -556,9 +555,7 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
         </body>
                 </html>`,
                 });
-              
-                //console.log("Message sent: %s", info.messageId);
-                }
+             }
                 main().catch('Email Message Error', console.error);
 
                 res.status(201).json({ msg: '201'}) // success message

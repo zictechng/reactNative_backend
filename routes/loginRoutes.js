@@ -469,11 +469,8 @@ router.post("/login", async (req, res, next) => {
                 </body>
                     </html>`,
                     });
-                  
-                    //console.log("Message sent: %s", info.messageId);
-                    }
+                  }
                     main().catch('Message Error', console.error);
-                
                 res.send({ msg: '200', token: token, userData: others})
             //res.json({status: 201, message: ' Login Successful'})
             //console.log('Environment data!', process.env.SECRET_KEY);
@@ -823,8 +820,7 @@ router.post("/otp_verify", async (req, res, next) => {
                     </body>
                         </html>`,
                         });
-                      
-                        //console.log("Message sent: %s", info.messageId);
+                       
                         }
                         main().catch('Message Error', console.error);
                     //res.status(200).json({ msg: '200'}) // success message
