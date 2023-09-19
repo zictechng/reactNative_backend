@@ -121,7 +121,7 @@ router.get("/profileMobile/:id", async (req, res) => {
   // get recent transaction of the user financial details here..
   router.get("/recent_transactions/:id", async (req, res) => {
     let userId = req.params.id;
-    console.log("Recent record ", userId);
+    //console.log("Recent record ", userId);
     try {
       const recentTransaction = await TransferFund.find({createdBy: userId})
       .sort({ creditOn: -1 }).limit(6);
