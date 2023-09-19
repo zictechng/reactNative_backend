@@ -827,7 +827,8 @@ router.post("/otp_verify", async (req, res, next) => {
                         //console.log("Message sent: %s", info.messageId);
                         }
                         main().catch('Message Error', console.error);
-                    res.status(200).json({ msg: '200'}) // success message
+                    //res.status(200).json({ msg: '200'}) // success message
+                    res.send({ msg: '200'})
 
                 }
              } catch (err) {
