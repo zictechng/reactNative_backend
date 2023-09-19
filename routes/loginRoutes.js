@@ -621,7 +621,7 @@ router.post("/otp_verify", async (req, res, next) => {
                     console.log("OTP not matched ");
                     return res.json({status: 404, message: ' Invalid otp code'})
                   }
-                else{
+                else if(matches){
                      // just update one row
                 const updateUserNow = await User.updateOne(filterUser, updateActStatus);
                 // create log here
@@ -822,10 +822,12 @@ router.post("/otp_verify", async (req, res, next) => {
                         });
                        
                         }
-                        main().catch('Message Error', console.error);
+                    main().catch('Message Error', console.error);
                     //res.status(200).json({ msg: '200'}) // success message
                     res.send({ msg: '200'})
-
+                }
+                else{
+                    console.log('OTP Operation: Something went wrong');
                 }
              } catch (err) {
             res.status(500).send({ msg: "500" });
