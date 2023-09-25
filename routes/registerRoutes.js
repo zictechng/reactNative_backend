@@ -10,6 +10,8 @@ const SystemActivity = require('../models/SystemActivityLogs');
 
 const nodemailer = require("nodemailer");
 
+const transporter = require('../controllers/mailSender');
+
 const uploadLocation = "public/images"; // this is the image store location in the project
 const storage = multer.diskStorage({
   destination: (req, file, callBack) => {
@@ -132,20 +134,11 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
            });
 
            // email notification sending
-           var transporter  = nodemailer.createTransport({
-            host: process.env.EMAIL_HOST,
-            port: 587,
-            auth: {
-              user: process.env.EMAIL_USER_KEY,
-              pass: process.env.EMAIL_API_PASSWORD
-            }
-          });
-          
-          // async..await is not allowed in global scope, must use a wrapper
+           
           async function main() {
             // send mail with defined transport object
-            const info = await transporter.sendMail({
-              from: '"Rugipo Alumni Finance" <noreply@rugipoalumni.zictech-ng.com>', // sender address
+            const info = await transporter .sendMail({
+                from: '"Rugipo Alumni Finance" <support@rugipoalumni.zictech-ng.com>', // sender address
               to: email, // list of receivers
               subject: 'Account Opening Successfully',
             text: `Hello ${user.first_name}, this is to notify you that your has been opened successfully, your account officer will contact you shortly for further details, thank you. \n
@@ -363,20 +356,11 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
            });
 
             // email notification sending
-            var transporter  = nodemailer.createTransport({
-                host: process.env.EMAIL_HOST,
-                port: 587,
-                auth: {
-                  user: process.env.EMAIL_USER_KEY,
-                  pass: process.env.EMAIL_API_PASSWORD
-                }
-              });
-              
-              // async..await is not allowed in global scope, must use a wrapper
+           
               async function main() {
                 // send mail with defined transport object
-                const info = await transporter.sendMail({
-                  from: '"Rugipo Alumni Finance" <noreply@rugipoalumni.zictech-ng.com>', // sender address
+                const info = await transporter .sendMail({
+                    from: '"Rugipo Alumni Finance" <support@rugipoalumni.zictech-ng.com>', // sender address
                   to: email, // list of receivers
                   subject: 'Account Opening Successfully',
                 text: `Hello ${user.first_name}, this is to notify you that your has been opened successfully, your account officer will contact you shortly for further details, thank you. \n

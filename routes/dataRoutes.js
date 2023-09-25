@@ -25,6 +25,8 @@ const SystemActivity = require('../models/SystemActivityLogs');
 const Notification = require('../models/NotificationAlert');
 const AppSetting = require('../models/AppSettingDetails');
 
+const transporter = require('../controllers/mailSender');
+
 
 const uploadLocation = "public/images"; // this is the image store location in the project
 const storage = multer.diskStorage({

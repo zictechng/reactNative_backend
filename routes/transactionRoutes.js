@@ -17,6 +17,7 @@ const Notification = require('../models/NotificationAlert');
 
 const nodemailer = require("nodemailer");
 
+const transporter = require('../controllers/mailSender');
 // this function verify if the token user sent is valid
 function verifyToken(req, res, next) {
   if (!req.headers.authorization){
@@ -340,19 +341,11 @@ router.post("/confirm_pinMobile", async (req, res) => {
                     alert_read_date: ''
                 });
                 // email notification sending
-                var transporter  = nodemailer.createTransport({
-                    host: process.env.EMAIL_HOST,
-                    port: 587,
-                    auth: {
-                    user: process.env.EMAIL_USER_KEY,
-                    pass: process.env.EMAIL_API_PASSWORD
-                    }
-                });
                 
                 async function main() {
                     // send mail with defined transport object
                     const info = await transporter .sendMail({
-                      from: '"Rugipo Alumni Finance" <noreply@rugipoalumni.zictech-ng.com>', // sender address
+                        from: '"Rugipo Alumni Finance" <support@rugipoalumni.zictech-ng.com>', // sender address
                       to: userDetails.email, // list of receivers
                       subject: 'Funds Transfer',
                       text: `Hello ${userDetails.surname+' '+userDetails.first_name}, this is to notify you that a transaction of ${userDetails.currency_type+sendAmount} occurred in your account, Please contact your account officer if this is not you for immediate intervention.`,
@@ -595,11 +588,7 @@ router.post("/confirm_pinMobile", async (req, res) => {
                     });
                   }
                     main().catch('Message Error', console.error);
-                    if(main()){
-                        console.log('Login email sent successfully');
-                    } else{
-                        console.log('Login email not send');
-                    }
+                   
                  res.send({ msg: '200'})
               }
         } catch (err) {
@@ -984,19 +973,10 @@ router.post("/imfCode_confirmMobile", async (req, res) => {
     });
 
      // email notification sending
-     var transporter  = nodemailer.createTransport({
-        host: process.env.EMAIL_HOST,
-        port: 587,
-        auth: {
-        user: process.env.EMAIL_USER_KEY,
-        pass: process.env.EMAIL_API_PASSWORD
-        }
-    });
-    
     async function main() {
         // send mail with defined transport object
         const info = await transporter .sendMail({
-          from: '"Rugipo Alumni Finance" <noreply@rugipoalumni.zictech-ng.com>', // sender address
+          from: '"Rugipo Alumni Finance" <support@rugipoalumni.zictech-ng.com>', // sender address
           to: userDetails.email, // list of receivers
           subject: 'Funds Transfer',
           text: `Hello ${userDetails.surname+' '+userDetails.first_name}, this is to notify you that a transaction of ${userDetails.currency_type+sendAmount} occurred in your account, Please contact your account officer if this is not you for immediate intervention.`,
