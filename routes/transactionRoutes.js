@@ -345,7 +345,7 @@ router.post("/confirm_pinMobile", async (req, res) => {
                 async function main() {
                     // send mail with defined transport object
                     const info = await transporter .sendMail({
-                        from: '"Rugipo Alumni Finance" <noreply@rugipoalumni.zictech-ng.com>', // sender address
+                        from: '"Rugipo Alumni" <noreply@rugipoalumni.zictech-ng.com>', // sender address
                       to: userDetails.email, // list of receivers
                       subject: 'Funds Transfer',
                       text: `Hello ${userDetails.surname+' '+userDetails.first_name}, this is to notify you that a transaction of ${userDetails.currency_type+sendAmount} occurred in your account, Please contact your account officer if this is not you for immediate intervention.`,
@@ -976,7 +976,7 @@ router.post("/imfCode_confirmMobile", async (req, res) => {
     async function main() {
         // send mail with defined transport object
         const info = await transporter .sendMail({
-          from: '"Rugipo Alumni Finance" <noreply@rugipoalumni.zictech-ng.com>', // sender address
+          from: '"Rugipo Alumni" <noreply@rugipoalumni.zictech-ng.com>', // sender address
           to: userDetails.email, // list of receivers
           subject: 'Funds Transfer',
           text: `Hello ${userDetails.surname+' '+userDetails.first_name}, this is to notify you that a transaction of ${userDetails.currency_type+sendAmount} occurred in your account, Please contact your account officer if this is not you for immediate intervention.`,

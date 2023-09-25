@@ -138,7 +138,7 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
           async function main() {
             // send mail with defined transport object
             const info = await transporter .sendMail({
-                from: '"Rugipo Alumni Finance" <noreply@rugipoalumni.zictech-ng.com>', // sender address
+                from: '"Rugipo Alumni" <noreply@rugipoalumni.zictech-ng.com>', // sender address
               to: email, // list of receivers
               subject: 'Account Opening Successfully',
             text: `Hello ${user.first_name}, this is to notify you that your has been opened successfully, your account officer will contact you shortly for further details, thank you. \n
@@ -360,7 +360,7 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
               async function main() {
                 // send mail with defined transport object
                 const info = await transporter .sendMail({
-                    from: '"Rugipo Alumni Finance" <noreply@rugipoalumni.zictech-ng.com>', // sender address
+                    from: '"Rugipo Alumni" <noreply@rugipoalumni.zictech-ng.com>', // sender address
                   to: email, // list of receivers
                   subject: 'Account Opening Successfully',
                 text: `Hello ${user.first_name}, this is to notify you that your has been opened successfully, your account officer will contact you shortly for further details, thank you. \n

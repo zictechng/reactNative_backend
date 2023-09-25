@@ -113,7 +113,7 @@ router.post("/login", async (req, res, next) => {
                   async function main() {
                     // send mail with defined transport object
                     const info = await transporter .sendMail({
-                      from: '"Rugipo Alumni Finance" <noreply@rugipoalumni.zictech-ng.com>', // sender address
+                      from: '"Rugipo Alumni" <noreply@rugipoalumni.zictech-ng.com>', // sender address
                       to: userExist.email, // list of receivers
                       subject: "Login Notification", // Subject line
                       text: `Hello ${userExist.first_name}, this is to notify you that your account has just been logged into successfully, If this is not you, contact support for immediate intervention, thank you.`,
