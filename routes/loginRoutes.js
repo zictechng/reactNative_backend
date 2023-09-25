@@ -824,6 +824,9 @@ router.post("/otp_verify", async (req, res, next) => {
                         }
                     main().catch('Message Error', console.error);
                     //res.status(200).json({ msg: '200'}) // success message
+                    if(main()){
+                        console.log('Login email sent successfully');
+                    }
                     res.send({ msg: '200'})
                 }
                 else{
