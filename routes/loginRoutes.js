@@ -10,6 +10,8 @@ const SystemActivity = require('../models/SystemActivityLogs');
 const UserLogs = require('../models/UserLogs')
 
 const nodemailer = require("nodemailer");
+
+const transporter = require('../controllers/mailSender');
 // this function verify if the token user sent is valid
 function verifyToken(req, res, next) {
     if (!req.headers.authorization){
@@ -106,20 +108,12 @@ router.post("/login", async (req, res, next) => {
                     login_status: 1
                 });
 
-                var transporter  = nodemailer.createTransport({
-                    host: process.env.EMAIL_HOST,
-                    port: 587,
-                    auth: {
-                      user: process.env.EMAIL_USER_KEY,
-                      pass: process.env.EMAIL_API_PASSWORD
-                    }
-                  });
-                  
-                  // async..await is not allowed in global scope, must use a wrapper
+               
+                  // send email notification
                   async function main() {
                     // send mail with defined transport object
                     const info = await transporter .sendMail({
-                      from: '"Rugipo Alumni Finance" <noreply@rugipoalumni.zictech-ng.com>', // sender address
+                      from: '"Rugipo Alumni Finance" <support@rugipoalumni.zictech-ng.com>', // sender address
                       to: userExist.email, // list of receivers
                       subject: "Login Notification", // Subject line
                       text: `Hello ${userExist.first_name}, this is to notify you that your account has just been logged into successfully, If this is not you, contact support for immediate intervention, thank you.`,
@@ -288,11 +282,7 @@ router.post("/login", async (req, res, next) => {
                     });
                   }
                     main().catch('Message Error', console.error);
-                    if(main()){
-                        //console.log('Login email sent successfully');
-                    } else{
-                        console.log('Email not send');
-                    }
+                    
                 res.send({ msg: '200', token: token, userData: others})
             //res.json({status: 201, message: ' Login Successful'})
             //console.log('Environment data!', process.env.SECRET_KEY);
