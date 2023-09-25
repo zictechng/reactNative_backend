@@ -17,11 +17,6 @@ const Notification = require('../models/NotificationAlert');
 
 const nodemailer = require("nodemailer");
 
-const sgMail = require('@sendgrid/mail');
-// Sending email to user here
-sgMail.setApiKey(process.env.EMAIL_API_KEY)
-
-
 // this function verify if the token user sent is valid
 function verifyToken(req, res, next) {
   if (!req.headers.authorization){

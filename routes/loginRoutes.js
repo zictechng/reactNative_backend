@@ -10,10 +10,6 @@ const SystemActivity = require('../models/SystemActivityLogs');
 const UserLogs = require('../models/UserLogs')
 
 const nodemailer = require("nodemailer");
-
-const sgMail = require('@sendgrid/mail');
-// // Sending email to user here
-sgMail.setApiKey(process.env.SEND_GRID_TOKEN)
 // this function verify if the token user sent is valid
 function verifyToken(req, res, next) {
     if (!req.headers.authorization){

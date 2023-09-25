@@ -10,10 +10,6 @@ const SystemActivity = require('../models/SystemActivityLogs');
 
 const nodemailer = require("nodemailer");
 
-// const sgMail = require('@sendgrid/mail');
-// // Sending email to user here
-// sgMail.setApiKey(process.env.SEND_GRID_TOKEN)
-
 const uploadLocation = "public/images"; // this is the image store location in the project
 const storage = multer.diskStorage({
   destination: (req, file, callBack) => {
