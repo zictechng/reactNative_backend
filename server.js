@@ -82,7 +82,6 @@ mongoose.connection.once('open', () =>{
     app.listen(PORT, () => console.log(`Server is running on port... ${PORT}`))
 })
 
-
 // if there is error in db connection 
 mongoose.connection.on('error', err =>{
     // show console message here

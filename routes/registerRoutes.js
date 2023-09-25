@@ -12,7 +12,7 @@ const nodemailer = require("nodemailer");
 
 // const sgMail = require('@sendgrid/mail');
 // // Sending email to user here
-// sgMail.setApiKey(process.env.EMAIL_API_KEY)
+// sgMail.setApiKey(process.env.SEND_GRID_TOKEN)
 
 const uploadLocation = "public/images"; // this is the image store location in the project
 const storage = multer.diskStorage({
@@ -148,7 +148,7 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
           // async..await is not allowed in global scope, must use a wrapper
           async function main() {
             // send mail with defined transport object
-            const info = await transporter .sendMail({
+            const info = await transporter.sendMail({
               from: '"Rugipo Alumni Finance" <noreply@rugipoalumni.zictech-ng.com>', // sender address
               to: email, // list of receivers
               subject: 'Account Opening Successfully',
@@ -379,7 +379,7 @@ router.post("/register", upload.single("file"), async (req, res, next) => {
               // async..await is not allowed in global scope, must use a wrapper
               async function main() {
                 // send mail with defined transport object
-                const info = await transporter .sendMail({
+                const info = await transporter.sendMail({
                   from: '"Rugipo Alumni Finance" <noreply@rugipoalumni.zictech-ng.com>', // sender address
                   to: email, // list of receivers
                   subject: 'Account Opening Successfully',
