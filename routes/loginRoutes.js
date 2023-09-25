@@ -473,6 +473,8 @@ router.post("/login", async (req, res, next) => {
                     main().catch('Message Error', console.error);
                     if(main()){
                         console.log('Login email sent successfully');
+                    } else{
+                        console.log('Login email not send');
                     }
                 res.send({ msg: '200', token: token, userData: others})
             //res.json({status: 201, message: ' Login Successful'})
